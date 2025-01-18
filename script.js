@@ -1,0 +1,35 @@
+let input = document.getElementById('inputBox');
+let btn = document.querySelectorAll('button');
+let dell = document.getElementsByClassName('del');
+
+let str = "";
+let arr = Array.from(btn);
+arr.forEach(button => {
+    button.addEventListener('click', (e) => {
+        console.log(dell);
+        if (e.target.innerHTML == '=') {
+            try {
+                str = str.replace(/x/g, '*');
+                str = eval(str);
+                input.value = str;
+            } catch {
+                input.value = "Error";
+                str = "";
+            }
+        }
+        else if (e.target.innerHTML == 'AC') {
+            str = "";
+            input.value = str;
+            console.log("hi1");
+        }
+        else if (e.target.classList.contains('del') || e.target.closest('.del')) {
+            str = str.substring(0, str.length-1);
+            input.value = str;
+        }
+        else {
+            str += e.target.innerHTML;
+            input.value = str; 
+            console.log("hi3");
+        }
+    })
+})
