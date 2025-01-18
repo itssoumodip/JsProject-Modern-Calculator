@@ -1,8 +1,8 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box ;
-    font-family: 'poppins',serif;
+    box-sizing: border-box;
+    font-family: 'Poppins', serif;
 }
 
 .del img {
@@ -28,15 +28,24 @@ body {
     border-radius: 16px;
     background-color: transparent;
     box-shadow: 0px 3px 15px rgba(113, 115, 119, 0.5);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+.all {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 input {
-    width: 320px;
+    width: 100%;
     border: none;
     padding: 23px;
     margin: 10px;
     background-color: transparent;
-    box-shadow: 0px 3px 15px rgbs(84, 84, 84, 0.1);
+    box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
     font-size: 40px;
     text-align: right;
     color: #ffffff;
@@ -69,4 +78,59 @@ button {
 
 .ac {
     color: red;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.397);
+}
+
+button:active {
+    background-color: rgba(255, 255, 255, 0.397);
+}
+
+@media screen and (max-width: 600px) {
+    .calculator {
+        padding: 10px;
+        width: 90%;
+        
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    input {
+        font-size: 32px;
+    }
+
+    button {
+        width: 50px;
+        height: 50px;
+        font-size: 18px;
+        margin: 8px;
+    }
+
+    .equalBtn {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .calculator {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    input {
+        font-size: 28px;
+    }
+
+    button {
+        width: 45px;
+        height: 45px;
+        font-size: 16px;
+        margin: 6px;
+    }
 }
