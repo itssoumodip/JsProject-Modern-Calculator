@@ -5,11 +5,12 @@
     font-family: 'poppins',serif;
 }
 
-.symbol img {
-    width: 16px;
-    height: 12px;
+.del img {
+    width: 24px;
+    height: 20px;
     object-fit: cover;
-    margin: -1px;
+    margin: -4px;
+    filter: invert(22%) sepia(94%) saturate(7268%) hue-rotate(1deg) brightness(95%) contrast(105%);
 }
 
 body {
@@ -38,6 +39,7 @@ input {
     box-shadow: 0px 3px 15px rgbs(84, 84, 84, 0.1);
     font-size: 40px;
     text-align: right;
+    color: #ffffff;
 }
 
 input::placeholder {
@@ -47,10 +49,24 @@ input::placeholder {
 button {
     border: none;
     width: 60px;
-    /* height: 60px; */
-    /* margin: 10px; */
+    height: 60px;
+    margin: 10px;
     border-radius: 50%;
     background-color: transparent;
     color: #ffffff;
     font-size: 20px;
+    box-shadow: -8px -8px 15px rgba(225, 255, 255, 0.1);
+    cursor: pointer;
+}
+
+.equalBtn {
+    background-color: #fb7c14;
+}
+
+.oparator {
+    color: #6dee0a;
+}
+
+.ac {
+    color: red;
 }
