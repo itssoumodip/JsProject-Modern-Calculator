@@ -6,33 +6,39 @@ let str = "";
 let arr = Array.from(btn);
 arr.forEach(button => {
     button.addEventListener('click', (e) => {
+        let value = e.target.innerHTML;
         // console.log(dell);
-        if (e.target.innerHTML == '=') {
+        if (value == '=') {
             try {
-                str = str.replace(/x/g, '*');
-                str = eval(str);
-                input.value = str;
-                console.log("hi1");
+                if (str === "" || /[+\-*/]$/.test(str))
+                {
+                    input.value = "Error";
+                    str = "";
+                }
+                else 
+                {
+                    str = str.replace(/x/g, '*');
+                    str = eval(str);
+                    input.value = str;
+                }
             } catch {
                 input.value = "Error";
                 str = "";
-                console.log("hi2");
             }
         }
-        else if (e.target.innerHTML == 'AC') {
+        else if (value == 'AC') {
             str = "";
             input.value = str;
-            console.log("hi3");
         }
         else if (e.target.classList.contains('del') || e.target.closest('.del')) {
-            str = str.substring(0, str.length-1);
+            str = str.substring(0, str.length-1); //remove the last char
             input.value = str;
-            console.log("hi4");
         }
         else {
-            str += e.target.innerHTML;
-            input.value = str; 
-            console.log("hi5");
+            if (/[+\-*/]$/.test(str) && /[+\-*/]/.test(value))
+                return;
+            str += value;
+            input.value = str;
         }
     })
 })
