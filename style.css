@@ -154,7 +154,10 @@ button:active {
         flex-wrap: wrap;
         justify-content: space-evenly;
     }
-
+    .del img {
+        width: 15px;
+        height: 15px;
+    }
     input {
         font-size: 32px;
         height: 53px;
