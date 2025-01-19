@@ -91,7 +91,7 @@ button:active {
 @media screen and (max-width: 600px) {
     .calculator {
         padding: 10px;
-        width: 90%;
+        max-width: 59%;
         align-items: center;
         display: flex;
         flex-wrap: wrap;
@@ -100,6 +100,8 @@ button:active {
 
     input {
         font-size: 32px;
+        height: 95px;
+        margin-top: 15px;
     }
 
     button {
@@ -108,14 +110,45 @@ button:active {
         font-size: 18px;
         margin: 8px;
     }
-
     .equalBtn {
         font-size: 18px;
     }
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 500px) {
     .calculator {
+        padding: 10px;
+        width: 55%;
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+    .del img {
+        width: 20px;
+        height: 20px;
+    }
+    input {
+        font-size: 25px;
+        height: 63px;
+        margin-top: 5px;
+    }
+
+    button {
+        width: 35px;
+        height: 35px;
+        font-size: 15px;
+        margin: 8px;
+    }
+    .equalBtn {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 410px) {
+    .calculator {
+        padding: 10px;
+        max-width: 59%;
         align-items: center;
         display: flex;
         flex-wrap: wrap;
@@ -123,7 +156,9 @@ button:active {
     }
 
     input {
-        font-size: 28px;
+        font-size: 32px;
+        height: 95px;
+        margin-top: 15px;
     }
 
     button {
