@@ -157,14 +157,14 @@ button:active {
 
     input {
         font-size: 32px;
-        height: 95px;
+        height: 53px;
         margin-top: 15px;
     }
 
     button {
-        width: 45px;
-        height: 45px;
-        font-size: 16px;
-        margin: 6px;
+        width: 23px;
+        height: 23px;
+        font-size: 10px;
+        margin: 7px;
     }
 }
