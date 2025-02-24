@@ -6,7 +6,7 @@ console.log("History OF YOU : ");
 let str = "";
 let arr = Array.from(btn);
 
-// Function to scroll input to the end
+
 function scrollToEnd() {
     input.scrollLeft = input.scrollWidth;
 }
@@ -51,10 +51,10 @@ arr.forEach(button => {
                 input.value = str;
             }
         }
-        // Scroll to the end after each input update
+     
         scrollToEnd();
     })
 })
 
-// Add event listener for keyboard input
+
 input.addEventListener('input', scrollToEnd);

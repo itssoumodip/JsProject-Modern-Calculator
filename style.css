@@ -35,7 +35,7 @@ body {
 input {
     width: 100%;
     border: none;
-    padding: 1.5rem;
+    padding:2rem 0rem 1rem 1rem;
     margin-bottom: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     border-radius: 16px;
@@ -47,12 +47,12 @@ input {
     white-space: nowrap;
     -ms-overflow-style: none; 
     scrollbar-width: none;     
+  
 }
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
 }
-
 
 input::-webkit-scrollbar {
     display: none;
@@ -110,7 +110,8 @@ button:active {
 
     input {
         font-size: 2rem;
-        padding: 1.2rem;
+        padding: 1.2rem 1rem;
+        padding-right: 1.5rem;
     }
 
     button {
@@ -127,6 +128,7 @@ button:active {
     input {
         font-size: 1.75rem;
         padding: 1rem;
+        padding-right: 1.2rem;
         margin-bottom: 1rem;
     }
 
