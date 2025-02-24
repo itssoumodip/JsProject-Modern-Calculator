@@ -5,13 +5,18 @@ let dell = document.getElementsByClassName('del');
 console.log("History OF YOU : ");
 let str = "";
 let arr = Array.from(btn);
+
+// Function to scroll input to the end
+function scrollToEnd() {
+    input.scrollLeft = input.scrollWidth;
+}
+
 arr.forEach(button => {
     button.addEventListener('click', (e) => {
         let value = e.target.innerHTML.trim();
-        // console.log(dell);
+        
         if (value === '=') {
             try {
-                // console.log(str);
                 str = str.replace(/x/g, '*');
                 if (str === "" || /[+\-*%/]$/.test(str)) {
                     str = str.slice(0, -1);
@@ -34,19 +39,22 @@ arr.forEach(button => {
             input.value = str;
         }
         else if (e.target.classList.contains('del') || e.target.closest('.del')) {
-            str = str.slice(0, -1); //remove the last char
+            str = str.slice(0, -1);
             input.value = str;
         }
         else {
-            // str = str.replace(/x/g, '*');
             if (/[x\-+%/]$/.test(str) && /[x\-+%/]/.test(value)) {
                 return;
             }
-            else 
-            {
+            else {
                 str += value;
                 input.value = str;
             }
         }
+        // Scroll to the end after each input update
+        scrollToEnd();
     })
 })
+
+// Add event listener for keyboard input
+input.addEventListener('input', scrollToEnd);

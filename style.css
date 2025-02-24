@@ -43,10 +43,19 @@ input {
     text-align: right;
     color: #ffffff;
     outline: none;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;     
 }
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
+}
+
+
+input::-webkit-scrollbar {
+    display: none;
 }
 
 button {
