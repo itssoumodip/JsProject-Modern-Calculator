@@ -1,9 +1,24 @@
-.css */
+/* Modern Calculator Styles */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --primary-bg: linear-gradient(150deg, #1a1a2e, #16213e, #0f3460);
+    --calculator-bg: rgba(255, 255, 255, 0.07);
+    --button-bg: rgba(255, 255, 255, 0.08);
+    --button-hover: rgba(255, 255, 255, 0.12);
+    --button-active: rgba(255, 255, 255, 0.18);
+    --text-color: #ffffff;
+    --accent-color: #00ff95;
+    --danger-color: #ff6b6b;
+    --equal-gradient: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    --border-color: rgba(255, 255, 255, 0.1);
 }
 
 body {
@@ -12,50 +27,133 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(120deg, #1a1a2e, #16213e);
+    background: var(--primary-bg);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+        radial-gradient(circle, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px, 20px 20px;
+    z-index: 0;
 }
 
 .calculator {
+    position: relative;
     backdrop-filter: blur(16px);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 2rem;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: var(--calculator-bg);
+    border: 1px solid var(--border-color);
+    padding: 2.25rem;
+    border-radius: 28px;
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.4),
+        0 10px 15px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
     width: 100%;
     max-width: 420px;
+    z-index: 1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.all {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.8rem;
+.calculator:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 25px 60px rgba(0, 0, 0, 0.5),
+        0 15px 20px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.07) inset;
+}
+
+.calculator::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border-radius: 30px;
+    background: linear-gradient(45deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+    z-index: -1;
+    pointer-events: none;
+}
+
+.display-area {
+    position: relative;
+    margin-bottom: 1.75rem;
+}
+
+.previous-operation {
+    width: 100%;
+    border: none;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: right;
+    font-size: 1rem;
+    height: 1.5rem;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 input {
     width: 100%;
     border: none;
-    padding:2rem 0rem 1rem 1rem;
-    margin-bottom: 1.5rem;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 16px;
+    padding: 1.25rem 1.25rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 20px;
     font-size: 2.5rem;
     text-align: right;
-    color: #ffffff;
+    color: var(--text-color);
     outline: none;
     overflow-x: auto;
     white-space: nowrap;
     -ms-overflow-style: none; 
-    scrollbar-width: none;     
-  
+    scrollbar-width: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) inset;
+    font-weight: 500;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+}
+
+input:focus {
+    background: rgba(255, 255, 255, 0.09);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15) inset;
 }
 
 input::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.3);
 }
 
 input::-webkit-scrollbar {
     display: none;
+}
+
+.all {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.9rem;
 }
 
 button {
@@ -63,94 +161,214 @@ button {
     aspect-ratio: 1;
     width: 100%;
     border-radius: 50%;
-    background: rgba(255, 255, 255, 0.05);
-    color: #ffffff;
-    font-size: 1.25rem;
+    background: var(--button-bg);
+    color: var(--text-color);
+    font-size: 1.35rem;
+    font-weight: 500;
     backdrop-filter: blur(4px);
-    transition: all 0.3s ease;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    box-shadow: 
+        0 4px 10px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+    position: relative;
+    overflow: hidden;
+}
+
+button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: width 0.5s ease, height 0.5s ease, opacity 0.5s ease;
+}
+
+button:hover::after {
+    width: 120%;
+    height: 120%;
+    opacity: 1;
 }
 
 .equalBtn {
-    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    background: var(--equal-gradient);
+    box-shadow: 
+        0 6px 20px rgba(255, 107, 107, 0.3),
+        0 2px 5px rgba(255, 107, 107, 0.2);
+    font-weight: 600;
 }
 
-.oparator {
-    color: #00ff95;
-    background: rgba(0, 255, 149, 0.1);
+.equalBtn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 25px rgba(255, 107, 107, 0.4),
+        0 4px 10px rgba(255, 107, 107, 0.3);
+}
+
+.operator {
+    color: var(--accent-color);
+    background: rgba(0, 255, 149, 0.12);
+    font-size: 1.5rem;
 }
 
 .ac {
-    color: #ff6b6b;
-    background: rgba(255, 107, 107, 0.1);
+    color: var(--danger-color);
+    background: rgba(255, 107, 107, 0.15);
+    font-weight: 600;
+}
+
+.del {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .del img {
-    width: 1.5rem;
-    height: 1.5rem;
+    width: 1.4rem;
+    height: 1.4rem;
     object-fit: contain;
     filter: invert(100%);
+    opacity: 0.9;
+    transition: transform 0.2s ease;
+}
+
+.del:hover img {
+    transform: scale(1.1);
 }
 
 button:hover {
-    transform: translateY(-2px);
-    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+    background: var(--button-hover);
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
 button:active {
     transform: translateY(0);
-    background: rgba(255, 255, 255, 0.15);
+    background: var(--button-active);
+    box-shadow: 
+        0 2px 5px rgba(0, 0, 0, 0.1),
+        0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+}
+
+.memory-btn {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes buttonPress {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+}
+
+.button-press {
+    animation: buttonPress 0.2s ease;
 }
 
 @media screen and (max-width: 768px) {
     .calculator {
-        max-width: 360px;
-        padding: 1.5rem;
+        max-width: 380px;
+        padding: 1.75rem;
+        margin: 0 1rem;
     }
 
     input {
         font-size: 2rem;
-        padding: 1.2rem 1rem;
-        padding-right: 1.5rem;
+        padding: 1.2rem 1.2rem;
     }
 
     button {
-        font-size: 1.1rem;
+        font-size: 1.2rem;
     }
 }
 
 @media screen and (max-width: 480px) {
     .calculator {
-        max-width: 320px;
-        padding: 1rem;
+        max-width: 340px;
+        padding: 1.5rem;
+        border-radius: 24px;
     }
 
     input {
-        font-size: 1.75rem;
-        padding: 1rem;
-        padding-right: 1.2rem;
+        font-size: 1.8rem;
+        padding: 1rem 1rem;
         margin-bottom: 1rem;
+        border-radius: 16px;
+    }
+
+    .all {
+        gap: 0.7rem;
+    }
+
+    button {
+        font-size: 1.1rem;
+    }
+
+    .operator {
+        font-size: 1.3rem;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .calculator {
+        max-width: 300px;
+        padding: 1.25rem;
     }
 
     .all {
         gap: 0.6rem;
     }
 
+    input {
+        font-size: 1.6rem;
+        border-radius: 14px;
+    }
+
     button {
         font-size: 1rem;
     }
+    
+    .previous-operation {
+        font-size: 0.9rem;
+    }
 }
 
-@media screen and (max-width: 360px) {
+@media screen and (max-height: 600px) and (orientation: landscape) {
     .calculator {
-        max-width: 280px;
+        max-width: 460px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
     }
-
+    
+    .display-area {
+        flex: 1;
+        margin-bottom: 0;
+    }
+    
+    .all {
+        flex: 2;
+    }
+    
     input {
-        font-size: 1.5rem;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        margin-bottom: 0;
     }
+}
 
-    button {
-        font-size: 0.9rem;
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-bg: linear-gradient(150deg, #1a1a2e, #16213e, #0f3460);
     }
 }
